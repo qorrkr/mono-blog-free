@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>간단한 코드로 만드는 블로그 사이트 — 판매 랜딩</title>
+  <meta name="description" content="HTML 하나로 실행되는 블로그 템플릿(로그인·글쓰기·댓글). 무료판/프로판 비교, 즉시 다운로드 및 구매 안내." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://example.com/mono-blog" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="간단한 코드로 만드는 블로그 사이트" />
+  <meta property="og:description" content="로그인·글쓰기·댓글 포함. 무료판/프로판 제공." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./og-image.png" />
+
+  <!-- jQuery & Plugins (CDN) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <!-- Slick Carousel for testimonials -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <!-- jQuery Validation for forms -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+  <link rel="stylesheet" href="./style.css"></link>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="logo">MONO BLOG</div>
+      <nav class="nav">
+        <a href="#features">기능</a>
+        <a href="#preview">미리보기</a>
+        <a href="#compare">비교</a>
+        <a href="#pricing">가격</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <header class="hero">
+    <div class="container">
+      <h1>간단한 코드로 만드는 <strong>블로그 사이트</strong></h1>
+      <p>로그인 · 글쓰기 · 댓글 기능 포함. HTML 파일 하나로 바로 실행되는 학습용 템플릿.</p>
+      <div class="btns">
+        <a class="btn main" href="../free/simple_blog_free_v1.zip" download>무료 다운로드(.zip)</a>
+        <a class="btn" href="../free/guide.pdf" target="_blank">빠른 시작 가이드</a>
+        <a class="btn" href="#pricing">프로판 살펴보기</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="features">
+    <div class="container">
+      <h2 class="section-title">핵심 기능</h2>
+      <div class="features">
+        <div class="feature">
+          <h3>닉네임 로그인</h3>
+          <p>한 번 입력하면 브라우저에 저장되어 내 이름으로 글을 작성.</p>
+        </div>
+        <div class="feature">
+          <h3>글쓰기 · 댓글</h3>
+          <p>로컬 저장(localStorage) 기반으로 즉시 반영되는 학습용 CRUD.</p>
+        </div>
+        <div class="feature">
+          <h3>모노톤 UI</h3>
+          <p>흰/검 계열, 각진 라인, 최소 요소로 구성한 모던한 디자인.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="preview">
+    <div class="container">
+      <h2 class="section-title">미리보기</h2>
+      <div class="preview-grid">
+        <img src="../free/assets/preview-01.png" alt="목록" />
+        <img src="../free/assets/preview-02.png" alt="글쓰기" />
+      </div>
+    </div>
+  </section>
+
+  <section id="compare">
+    <div class="container">
+      <h2 class="section-title">Free vs Pro</h2>
+      <table class="compare">
+        <tr><th>기능</th><th>Free</th><th>Pro</th></tr>
+        <tr><td>로그인/글/댓글</td><td>●</td><td>●</td></tr>
+        <tr><td>태그/검색</td><td>–</td><td>●</td></tr>
+        <tr><td>데이터 내보내기(JSON)</td><td>–</td><td>●</td></tr>
+        <tr><td>디자인 프리셋(3종)</td><td>–</td><td>●</td></tr>
+        <tr><td>정적 배포 가이드</td><td>–</td><td>●</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="container">
+      <h2 class="section-title">가격</h2>
+      <div class="pricing">
+        <div class="card" aria-label="무료판">
+          <h3>Free</h3>
+          <div class="price">₩0</div>
+          <ul>
+            <li>닉네임 로그인</li>
+            <li>글쓰기 · 댓글</li>
+            <li>모노톤 UI</li>
+          </ul>
+          <p style="margin-top:12px"><a class="btn" href="../free/simple_blog_free_v1.zip" download>즉시 다운로드</a></p>
+        </div>
+        <div class="card" aria-label="프로판">
+          <h3>Pro (예정)</h3>
+          <div class="price">₩59,000</div>
+          <ul>
+            <li>태그/검색, JSON 내보내기</li>
+            <li>디자인 프리셋 3종</li>
+            <li>정적 배포 가이드(10분 완성)</li>
+          </ul>
+          <p style="margin-top:12px"><a class="btn main" href="#buy" id="buyBtn">구매 알림 신청</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="social-proof">
+    <div class="container">
+      <h2 class="section-title">사용 후기</h2>
+      <div class="testimonials">
+        <div class="testimonial">
+          <p>코딩 처음인데 바로 글 쓰고 댓글까지 달려서 신기했습니다. 구조를 보고 많이 배웠어요.</p>
+          <div class="who">— 입문자 A</div>
+        </div>
+        <div class="testimonial">
+          <p>학생 수업용으로 딱. 파일 열면 바로 되니까 설치가 필요 없어서 편합니다.</p>
+          <div class="who">— 강사 B</div>
+        </div>
+        <div class="testimonial">
+          <p>모노톤 디자인이라 블로그 미니멀 컨셉과 잘 맞아요.</p>
+          <div class="who">— 크리에이터 C</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <h2 class="section-title">FAQ</h2>
+      <div class="faq-item">
+        <div class="faq-q">데이터가 왜 기기마다 다르게 보이나요? <span>+</span></div>
+        <div class="faq-a">로컬스토리지에 저장되기 때문에 브라우저/기기마다 데이터가 분리됩니다. 백업/동기화는 Pro 가이드에 포함될 예정입니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">서비스 운영에 바로 써도 되나요? <span>+</span></div>
+        <div class="faq-a">무료판은 학습용입니다. 실제 서비스 운영에는 백엔드/DB가 필요합니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">상업적으로 사용해도 되나요? <span>+</span></div>
+        <div class="faq-a">무료판 코드는 학습/포트폴리오 용도로 권장합니다. 라이선스는 README를 확인하세요.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="buy" class="cta-section">
+    <div class="container">
+      <h2 class="section-title">프로판 출시 알림 받기</h2>
+      <form id="notifyForm" class="cta-form" novalidate>
+        <div class="cta-row">
+          <input type="email" id="email" name="email" placeholder="이메일 입력" required />
+          <button type="submit" class="btn main">알림 신청</button>
+        </div>
+        <p id="notifyMsg" class="muted" style="margin-top:8px"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">© 2025 MONO PROJECT — Minimal, Modern, Monotone</div>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    $(document).on('click', '.nav a, .btn[href^="#"]', function(e){
+      const target = $(this).attr('href');
+      if(target.startsWith('#')){ e.preventDefault(); $('html,body').animate({scrollTop: $(target).offset().top-56}, 220); }
+    });
+
+    // Slick for testimonials
+    $(function(){ $('.testimonials').slick({ slidesToShow: 2, slidesToScroll: 1, arrows:false, dots:true, responsive:[{breakpoint:960, settings:{slidesToShow:1}}] }); });
+
+    // FAQ accordion
+    $(document).on('click', '.faq-q', function(){ $(this).next('.faq-a').slideToggle(120); });
+
+    // Notify form validation + fake submit
+    $('#notifyForm').validate({
+      rules:{ email:{ required:true, email:true } },
+      messages:{ email:{ required:'이메일을 입력하세요', email:'형식이 올바르지 않습니다' } },
+      submitHandler: function(form){
+        const email = $('#email').val().trim();
+        // TODO: 이곳에 실제 폼 제출(구글폼/서버리스) 연동
+        $('#notifyMsg').text('신청 완료! 출시 시 이메일로 알려드릴게요.');
+        $('#email').val('');
+        return false;
+      }
+    });
+  </script>
+
+  <!-- (선택) Google Analytics / Plausible 등 스니펫 자리 -->
+  <!-- <script>/* gtag/js or plausible snippet */</script> -->
+</body>
+</html>
