@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>신청 완료 — 다운로드</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body{font-family:system-ui, -apple-system; background:#fff; color:#111; margin:40px; text-align:center}
+    .btn{display:inline-block;padding:10px 18px;border:1px solid #111;text-decoration:none}
+  </style>
+</head>
+<body>
+  <h1>신청이 완료되었습니다!</h1>
+  <p>다운로드가 자동으로 시작됩니다. 시작하지 않으면 아래 버튼을 누르세요.</p>
+  <p><a id="manualDownload" class="btn" href="/free/simple_blog_free_v1.zip">다운로드가 안되면 클릭</a></p>
+
+  <script>
+    // 자동 다운로드 시도 (브라우저 보안으로 인해 팝업/차단될 수 있음 — 수동 버튼 제공)
+    (function(){
+      var url = '/free/simple_blog_free_v1.zip';
+      try {
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = '';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } catch(e){
+        // 실패해도 수동 버튼으로 대응
+        console.warn('자동 다운로드 실패', e);
+      }
+
+      // Analytics 이벤트(옵션): 다운로드 시도 트랙
+      if(window.gtag){
+        gtag('event','download_attempt',{event_category:'engagement', event_label:'free_zip'});
+      }
+    })();
+  </script>
+</body>
+</html>

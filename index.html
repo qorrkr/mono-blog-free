@@ -7,6 +7,9 @@
   <meta name="description" content="HTML 하나로 실행되는 블로그 템플릿(로그인·글쓰기·댓글). 무료판/프로판 비교, 즉시 다운로드 및 구매 안내." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://example.com/mono-blog" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- Open Graph -->
   <meta property="og:title" content="간단한 코드로 만드는 블로그 사이트" />
   <meta property="og:description" content="로그인·글쓰기·댓글 포함. 무료판/프로판 제공." />
@@ -22,6 +25,14 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
   <link rel="stylesheet" href="./style.css"></link>
+  <style>
+    /* 간단한 스타일(프로젝트 스타일과 겹치지 않게 기본) */
+    .notify-wrap{max-width:760px;margin:18px auto}
+    .cta-row{display:flex;gap:8px;align-items:center}
+    .cta-row input[type="email"]{flex:1;padding:10px;border:1px solid #ddd}
+    .form-msg{margin-top:8px;color:#666;font-size:14px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
 </head>
 <body>
   <header class="topbar">
@@ -37,19 +48,17 @@
     </div>
   </header>
 
-<header class="hero">
-  <div class="container">
-    <h1>간단한 코드로 만드는 <strong>블로그 사이트</strong></h1>
-    <p>로그인 · 글쓰기 · 댓글 기능 포함. HTML 파일 하나로 바로 실행되는 학습용 템플릿.</p>
-    <div class="btns">
-      <a class="btn main" href="https://github.com/qorrkr/mono-blog-free/releases/download/v1.0/simple_blog_free_v1.zip">
-        무료 다운로드 (.zip)
-      </a>
-      <a class="btn" href="./free/guide.pdf" target="_blank">빠른 시작 가이드</a>
-      <a class="btn" href="#pricing">프로판 살펴보기</a>
+  <header class="hero">
+    <div class="container">
+      <h1>간단한 코드로 만드는 <strong>블로그 사이트</strong></h1>
+      <p>로그인 · 글쓰기 · 댓글 기능 포함. HTML 파일 하나로 바로 실행되는 학습용 템플릿.</p>
+      <div class="btns">
+        <a class="btn main" href="https://github.com/qorrkr/mono-blog-free/releases/download/v1.0/simple_blog_free_v1.zip" download>무료 다운로드(.zip)</a>
+        <a class="btn" href="https://github.com/qorrkr/mono-blog-free/releases/download/v1.0guide.pdf" target="_blank">빠른 시작 가이드</a>
+        <a class="btn" href="#pricing">프로판 살펴보기</a>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
   <section id="features">
     <div class="container">
@@ -75,8 +84,8 @@
     <div class="container">
       <h2 class="section-title">미리보기</h2>
       <div class="preview-grid">
-        <img src="./free/assets/preview-01.png" alt="목록" />
-        <img src="./free/assets/preview-02.png" alt="글쓰기" />
+        <img src="../free/assets/preview-01.png" alt="목록" />
+        <img src="../free/assets/preview-02.png" alt="글쓰기" />
       </div>
     </div>
   </section>
@@ -107,7 +116,7 @@
             <li>글쓰기 · 댓글</li>
             <li>모노톤 UI</li>
           </ul>
-          <p style="margin-top:12px"><a class="btn" href="../free/simple_blog_free_v1.zip" download>즉시 다운로드</a></p>
+          <p style="margin-top:12px"><a class="btn" href="https://github.com/qorrkr/mono-blog-free/releases/download/v1.0/simple_blog_free_v1.zip" download>즉시 다운로드</a></p>
         </div>
         <div class="card" aria-label="프로판">
           <h3>Pro (예정)</h3>
@@ -164,14 +173,21 @@
   <section id="buy" class="cta-section">
     <div class="container">
       <h2 class="section-title">프로판 출시 알림 받기</h2>
-      <form id="notifyForm" class="cta-form" novalidate>
-        <div class="cta-row">
-          <input type="email" id="email" name="email" placeholder="이메일 입력" required />
-          <button type="submit" class="btn main">알림 신청</button>
-        </div>
-        <p id="notifyMsg" class="muted" style="margin-top:8px"></p>
-      </form>
-    </div>
+      <div class="notify-wrap">
+        <form name="notifyForm" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thank-you.html" id="notifyForm">
+          <!-- 필수: Netlify가 폼을 인식하려면 form-name 숨김 입력 필요 -->
+          <input type="hidden" name="form-name" value="notifyForm" />
+          <!-- honeypot (봇 방지) -->
+          <p class="sr-only"><label>Leave this field blank: <input name="bot-field" /></label></p>
+
+          <div class="cta-row">
+            <input type="email" name="email" id="notifyEmail" placeholder="이메일 입력" required aria-label="이메일 입력">
+            <button type="submit" class="btn main">알림 신청</button>
+          </div>
+
+          <div id="formMessage" class="form-msg" aria-live="polite"></div>
+        </form>
+      </div>
   </section>
 
   <footer class="footer">
@@ -204,11 +220,53 @@
       }
     });
   </script>
+  <script>
+  (function(){
+    const form = document.getElementById('notifyForm');
+    const msg = document.getElementById('formMessage');
+
+    // Optional: 클라이언트측 간단한 UX/피드백
+    form.addEventListener('submit', function(e){
+      // 기본 제출(페이지 리다이렉트)를 유지하려면 아래를 주석 처리하거나 제거
+      // e.preventDefault(); // -> 이 줄이 활성화되면 Netlify 자동 리다이렉트가 안 됨. AJAX 제출을 사용할 때만 사용.
+
+      // 간단한 사용자 메시지 (리디렉션 전 표시)
+      msg.textContent = '신청 중... 잠시만 기다려 주세요.';
+      msg.style.color = '#666';
+      // (페이지는 Netlify가 처리 후 action으로 리다이렉트 합니다)
+    });
+
+    // ---- Optional: AJAX 제출로 리다이렉트 없이 처리하고 싶을 때 사용 ----
+    // 아래 코드는 사용자의 선택 사항입니다.
+    // 사용하려면 위 submit listener에서 e.preventDefault()를 해제하고,
+    // 아래의 fetchSubmit 함수를 사용하세요 (파일명/경로 변경 불필요).
+    async function fetchSubmit(formEl){
+      const data = new FormData(formEl);
+      // 반드시 form-name 필드가 포함되어야 합니다 (숨김 필드)
+      try{
+        const res = await fetch('/', {
+          method: 'POST',
+          body: data
+        });
+        if(res.ok){
+          msg.textContent = '신청 완료! 잠시 후 확인 메일을 보내드릴게요.';
+          msg.style.color = 'green';
+          // 필요시 자동으로 감사/다운로드 페이지로 이동:
+          // window.location.href = '/thank-you.html';
+        } else {
+          throw new Error('서버 응답 오류');
+        }
+      } catch(err){
+        console.error(err);
+        msg.textContent = '제출에 실패했습니다. 잠시 후 다시 시도해주세요.';
+        msg.style.color = 'crimson';
+      }
+    }
+    // -------------------------------------------------------------------
+  })();
+  </script>
 
   <!-- (선택) Google Analytics / Plausible 등 스니펫 자리 -->
   <!-- <script>/* gtag/js or plausible snippet */</script> -->
 </body>
-
 </html>
-
-
