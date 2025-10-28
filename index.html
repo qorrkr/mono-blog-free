@@ -12,9 +12,10 @@
   <meta http-equiv="Expires" content="0">
   <!-- Open Graph -->
   <meta property="og:title" content="간단한 코드로 만드는 블로그 사이트" />
-  <meta property="og:description" content="로그인·글쓰기·댓글 포함. 무료판/프로판 제공." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="./og-image.png" />
+  <meta property="og:description" content="로그인·글쓰기·댓글 포함. HTML 파일 하나로 바로 실행되는 학습용 템플릿(무료)." />
+  <meta property="og:image" content="https://monobloga.netlify.app/free/assets/preview-01.png" />
+  <meta property="og:url" content="https://monobloga.netlify.app/index.html" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <!-- jQuery & Plugins (CDN) -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -33,6 +34,14 @@
     .form-msg{margin-top:8px;color:#666;font-size:14px}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');
+  </script>
 </head>
 <body>
   <header class="topbar">
@@ -53,7 +62,7 @@
       <h1>간단한 코드로 만드는 <strong>블로그 사이트</strong></h1>
       <p>로그인 · 글쓰기 · 댓글 기능 포함. HTML 파일 하나로 바로 실행되는 학습용 템플릿.</p>
       <div class="btns">
-        <a class="btn main" href="https://github.com/qorrkr/mono-blog-free/releases/download/v1.0/simple_blog_free_v1.zip" download>무료 다운로드(.zip)</a>
+        <a class="btn main download" href="https://github.com/qorrkr/mono-blog-free/releases/download/v1.0/simple_blog_free_v1.zip" download>무료 다운로드(.zip)</a>
         <a class="btn" href="https://github.com/qorrkr/mono-blog-free/releases/download/v1.0guide.pdf" target="_blank">빠른 시작 가이드</a>
         <a class="btn" href="#pricing">프로판 살펴보기</a>
       </div>
@@ -264,6 +273,14 @@
     }
     // -------------------------------------------------------------------
   })();
+  </script>
+  <script>
+    // 다운로드 클릭 트래킹
+    document.querySelectorAll('.download').forEach(function(el){
+      el.addEventListener('click', function(){
+        if(window.gtag) gtag('event','download',{event_category:'engagement', event_label:'free_zip'});
+      });
+    });
   </script>
 
   <!-- (선택) Google Analytics / Plausible 등 스니펫 자리 -->
